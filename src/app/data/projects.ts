@@ -1,0 +1,300 @@
+export type ProjectCategory = 'ai-ml' | 'research';
+export type ProjectStatus = 'completed' | 'in-progress' | 'research';
+
+export interface ProjectMetric {
+  performance: string;
+  impact: string;
+  users?: string;
+}
+
+export interface ProjectMedia {
+  type: 'image' | 'video';
+  title: string;
+  url: string;
+  thumbnail?: string;
+}
+
+export interface ProjectLink {
+  label: string;
+  url: string;
+}
+
+export interface Project {
+  id: string;
+  title: string;
+  category: ProjectCategory;
+  description: string;
+  longDescription: string;
+  problem: string;
+  solution: string;
+  implementation: string;
+  setup: string[];
+  technologies: string[];
+  image: string;
+  demoMedia: ProjectMedia[];
+  links: ProjectLink[];
+  status: ProjectStatus;
+  featured: boolean;
+  metrics: ProjectMetric;
+  year: string;
+}
+
+export const projects: Project[] = [
+  {
+    id: 'medinodus',
+    title: 'MediNodus - Personal AI Health Assistant',
+    category: 'ai-ml',
+    description:
+      'Privacy-first medical AI assistant that translates reports, flags abnormalities, and checks drug interactions using local model inference.',
+    longDescription:
+      'MediNodus is a healthcare-focused AI assistant designed to make medical data understandable and actionable for patients. It converts complex pathology reports into plain language, highlights abnormal values, and supports context-aware drug safety checks. A key design principle is privacy-first inference: sensitive health data is processed inside your own environment, avoiding dependence on third-party LLM APIs for core medical reasoning workflows.',
+    problem:
+      'Patients struggle with medical literacy and often cannot interpret report values confidently. At the same time, polypharmacy and unmanaged medication combinations increase avoidable risk, especially when users do not have clear drug interaction awareness. Typical cloud-first AI assistants also raise trust concerns for sensitive health records.',
+    solution:
+      'Built an end-to-end assistant with report translation, abnormality detection, and medication-safety screening. The system uses a local model pipeline for medical understanding, integrates profile-aware warning logic, and presents outputs in simple language for practical patient communication. This creates a safer, understandable, and privacy-aware healthcare support layer.',
+    implementation:
+      'Implemented a React Native mobile interface for scans and history, FastAPI backend services for async inference orchestration, and a Hugging Face Transformers-based AI engine around MedGamma style workflows. Dockerized backend stack supports reproducible deployment, while MongoDB-based storage keeps patient records and longitudinal report history structured and queryable.',
+    setup: [
+      'Clone repository and create environment files for backend and mobile folders.',
+      'Set backend variables: MONGO_URL, CLOUDINARY_KEY, SECRET_KEY, HF_TOKEN.',
+      'Build and run backend via Docker: docker build -t medinodus-backend . and docker run -p 8000:8000 --env-file .env medinodus-backend.',
+      'Install mobile dependencies and start Expo app for device testing.',
+      'Configure EXPO_PUBLIC_API_URL to local backend IP and validate report + drug-safety flows.'
+    ],
+    technologies: [
+      'React Native (Expo)',
+      'FastAPI',
+      'Python',
+      'Hugging Face Transformers',
+      'MedGamma',
+      'MongoDB Atlas',
+      'Beanie',
+      'Cloudinary',
+      'Docker',
+      'Docker Compose',
+      'JWT Authentication'
+    ],
+    image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1200&h=700&fit=crop',
+    demoMedia: [
+      {
+        type: 'image',
+        title: 'Medical report translation and risk summary interface',
+        url: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1200&h=700&fit=crop'
+      },
+      {
+        type: 'video',
+        title: 'MediNodus workflow demo',
+        url: 'https://github.com/ASHMEET555/medinodus',
+        thumbnail: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1200&h=700&fit=crop'
+      }
+    ],
+    links: [
+      { label: 'GitHub', url: 'https://github.com/ASHMEET555/medinodus' },
+      { label: 'Profile', url: 'https://github.com/ASHMEET555' }
+    ],
+    status: 'completed',
+    featured: true,
+    metrics: {
+      performance: 'Local inference pipeline',
+      impact: 'Privacy-first medical AI',
+      users: 'Patient-friendly report translation'
+    },
+    year: 'Dec 2025 - Jan 2026'
+  },
+  {
+    id: 'flashpoint',
+    title: 'FlashPoint v2.0 - Real-Time Intelligence Platform',
+    category: 'ai-ml',
+    description:
+      'Live geopolitical intelligence platform ingesting 50+ sources with streaming RAG chat, bias analysis, SITREP generation, and map-based monitoring.',
+    longDescription:
+      'FlashPoint is a production-grade live intelligence stack built to solve the crisis-time knowledge cutoff problem. It ingests continuous streams from Telegram, Reddit, RSS, and news APIs, applies semantic indexing, and serves grounded query responses through a live RAG interface. The platform combines event streaming, geospatial visualization, narrative divergence tracking, and automated report generation into a single operational dashboard.',
+    problem:
+      'During rapidly evolving events, mainstream reporting often lags, analysts are overwhelmed by high-velocity noisy channels, and standard LLM systems lack robust real-time context retrieval. Decision workflows need low-latency, source-grounded situational intelligence rather than delayed static summaries.',
+    solution:
+      'Developed a live RAG architecture with multi-source ingestion, streaming embedding/indexing, SSE event broadcast, and real-time chat grounded in the freshest event window. Added geolocation extraction, narrative-balance tracking, and one-click SITREP creation to support practical tactical and analytical use-cases.',
+    implementation:
+      'Implemented Pathway streaming engine for real-time ETL and retrieval, FastAPI for APIs + SSE + static dashboard serving, and connector workers for Telegram/Reddit/RSS/news ingestion. Integrated OpenRouter/Gemini model workflows, spaCy-based location extraction, Leaflet map rendering, and client-side PDF reporting. Stack is dockerized for reproducible full-system startup.',
+    setup: [
+      'Clone repository and create .env with OpenRouter, Gemini, Telegram, and optional GNews credentials.',
+      'Start infrastructure with Docker Compose (PostgreSQL, Redis, Qdrant).',
+      'Install Python dependencies and spaCy model en_core_web_sm.',
+      'Run FastAPI server (backend/main.py) and Pathway pipeline (backend/pipeline.py) in parallel terminals.',
+      'Open dashboard at localhost:8000 and validate feed streaming, chat, map, and SITREP workflows.'
+    ],
+    technologies: [
+      'Pathway',
+      'FastAPI',
+      'Uvicorn',
+      'Server-Sent Events (SSE)',
+      'LangChain',
+      'OpenRouter',
+      'Google Gemini',
+      'SentenceTransformers',
+      'Qdrant',
+      'PostgreSQL',
+      'TimescaleDB',
+      'Redis',
+      'Telethon',
+      'spaCy',
+      'Leaflet.js',
+      'Vanilla JavaScript',
+      'Docker Compose',
+      'jsPDF'
+    ],
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=700&fit=crop',
+    demoMedia: [
+      {
+        type: 'image',
+        title: 'Live feed, hotspot map, and narrative monitoring dashboard',
+        url: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=700&fit=crop'
+      },
+      {
+        type: 'video',
+        title: 'Official FlashPoint Demo Video',
+        url: 'https://youtu.be/lqzr3LzJZWU',
+        thumbnail: 'https://images.unsplash.com/photo-1543286386-2e659306cd6c?w=1200&h=700&fit=crop'
+      }
+    ],
+    links: [
+      { label: 'Demo Video', url: 'https://youtu.be/lqzr3LzJZWU' },
+      { label: 'GitHub', url: 'https://github.com/Reaper-ai/FlashPoint' }
+    ],
+    status: 'completed',
+    featured: true,
+    metrics: {
+      performance: '50+ live sources',
+      impact: 'Real-time crisis intelligence',
+      users: 'Streaming RAG and SITREP reports'
+    },
+    year: '2026'
+  },
+  {
+    id: 'chainaudit',
+    title: 'ChainAuditAI - Fraud Detection with On-Chain Audit Trails',
+    category: 'ai-ml',
+    description:
+      'Hybrid fraud intelligence system that combines ML-based risk scoring with immutable Ethereum-backed proof logging for auditable trust.',
+    longDescription:
+      'ChainAuditAI combines domain-specific fraud models with blockchain verification to deliver tamper-resistant decision traceability. Fraud scoring is computed off-chain for speed and privacy, while cryptographic proof artifacts are written on-chain for immutable auditability. This design balances practical ML performance with regulatory-grade verification requirements for high-trust financial and transactional workflows.',
+    problem:
+      'Conventional fraud systems are often centralized black boxes where decisions can be disputed, modified, or insufficiently traceable during audits. Institutions and users need provable evidence of when and how a fraud signal was generated without exposing private raw records.',
+    solution:
+      'Built a split architecture: ML inference runs off-chain per fraud domain, then fraud metadata is hashed and anchored on Ethereum through smart contracts. This allows independent integrity verification while protecting sensitive transaction details from on-chain exposure.',
+    implementation:
+      'Implemented FastAPI backend services for model routing and inference, trained separate model tracks for banking, e-commerce, insurance, and Ethereum patterns, and integrated Solidity smart contract functions to persist fraud proof records. Added dashboard and scanner interfaces for operations and verification workflows.',
+    setup: [
+      'Clone repository and install Python dependencies from requirements.txt.',
+      'Run backend service and load trained model weight files.',
+      'Compile and deploy fraudproof_ledger smart contract (Remix/Hardhat).',
+      'Update deployed contract address and ABI in backend config.',
+      'Connect wallet/testnet and validate scan -> prediction -> on-chain proof flow.'
+    ],
+    technologies: [
+      'Python',
+      'FastAPI',
+      'Scikit-learn',
+      'Pandas',
+      'Pickle Model Weights',
+      'Ethereum',
+      'Solidity',
+      'Smart Contracts',
+      'Web3',
+      'MetaMask',
+      'HTML',
+      'CSS',
+      'JavaScript'
+    ],
+    image: 'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=1200&h=700&fit=crop',
+    demoMedia: [
+      {
+        type: 'image',
+        title: 'Fraud scanner and immutable proof dashboard',
+        url: 'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=1200&h=700&fit=crop'
+      },
+      {
+        type: 'video',
+        title: 'Live product demo',
+        url: 'https://chainauditai.onrender.com/',
+        thumbnail: 'https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=1200&h=700&fit=crop'
+      }
+    ],
+    links: [
+      { label: 'Live Demo', url: 'https://chainauditai.onrender.com/' },
+      { label: 'GitHub Profile', url: 'https://github.com/ASHMEET555' }
+    ],
+    status: 'completed',
+    featured: true,
+    metrics: {
+      performance: 'Multi-domain fraud models',
+      impact: 'Immutable auditability',
+      users: 'On-chain integrity verification'
+    },
+    year: '2026'
+  },
+  {
+    id: 'triage',
+    title: 'Emergency Triage Risk Stratification (Multimodal Ensemble)',
+    category: 'research',
+    description:
+      'Real-world triage decision aid built on NHAMCS 2018-2022 using multimodal ordinal-aware ensembles and explainability pipelines.',
+    longDescription:
+      'This research project builds a 3-class emergency triage risk model from real ED records and clinically grounded text signals. It combines tabular vitals/history features, emergency keyword flags, and fine-tuned ClinicalBERT outputs in a stacked meta-learner architecture. The workflow emphasizes leakage-aware validation, ordinal-aware learning behavior, and practical interpretability to support reliable high-stakes care decisions.',
+    problem:
+      'Emergency triage labels are noisy and high stakes; undertriage can delay critical interventions while overtriage burdens limited resources. Many workflows also struggle to combine structured and unstructured clinical inputs in a reproducible and interpretable way.',
+    solution:
+      'Developed a multimodal ensemble pipeline with ordinal-aware regressors, multiclass classifiers, and NLP-derived probabilities. Added robust OOF validation and explainability (SHAP + LIME) to ensure model behavior is measurable, transparent, and clinically reviewable.',
+    implementation:
+      'Implemented full pipeline across STATA ingestion, text normalization and emergency keyword extraction, Distil-ClinicalBERT CORN ordinal modeling, and stacked logistic meta-learning. Integrated Streamlit deployment layer with confidence and per-class probability display for decision-aid style usage.',
+    setup: [
+      'Install project dependencies from pyproject.toml and prepare NHAMCS data files (2018-2022).',
+      'Run notebook pipeline in order: data processing, text processing, NLP, modelling, interpretation.',
+      'Generate working_data assets and model artifacts in results folders.',
+      'Start Streamlit app with streamlit run app.py.',
+      'Validate triage predictions, class probabilities, and explainability outputs.'
+    ],
+    technologies: [
+      'Python',
+      'XGBoost',
+      'LightGBM',
+      'ClinicalBERT',
+      'Transformers',
+      'CORN Ordinal Head',
+      'Scikit-learn',
+      'Pandas',
+      'NumPy',
+      'SHAP',
+      'LIME',
+      'Streamlit',
+      'Jupyter Notebooks'
+    ],
+    image: 'https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?w=1200&h=700&fit=crop',
+    demoMedia: [
+      {
+        type: 'image',
+        title: 'Triage class prediction and explainability dashboard',
+        url: 'https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?w=1200&h=700&fit=crop'
+      },
+      {
+        type: 'video',
+        title: 'Live Streamlit Demo',
+        url: 'https://traigegeist.streamlit.app/',
+        thumbnail: 'https://images.unsplash.com/photo-1579154204601-01588f351e67?w=1200&h=700&fit=crop'
+      }
+    ],
+    links: [
+      { label: 'Live Demo', url: 'https://traigegeist.streamlit.app/' },
+      { label: 'GitHub Profile', url: 'https://github.com/ASHMEET555' }
+    ],
+    status: 'research',
+    featured: true,
+    metrics: {
+      performance: 'QWK 0.5122 | F1 0.5829',
+      impact: '58,124 real ED records',
+      users: 'Urgent recall 0.6542'
+    },
+    year: '2026'
+  }
+];
+
+export const getProjectById = (id: string) => projects.find((project) => project.id === id);
