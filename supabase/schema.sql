@@ -23,6 +23,15 @@ create table if not exists public.chat_logs (
   created_at timestamptz not null default now()
 );
 
+-- 4) Contact form submissions (view in Table Editor → contact_messages)
+create table if not exists public.contact_messages (
+  id uuid primary key default gen_random_uuid(),
+  name text not null,
+  email text not null,
+  message text not null,
+  created_at timestamptz not null default now()
+);
+
 -- Auto-update timestamps
 create or replace function public.set_updated_at()
 returns trigger
@@ -48,6 +57,7 @@ for each row execute function public.set_updated_at();
 alter table public.portfolio_content enable row level security;
 alter table public.live_stats enable row level security;
 alter table public.chat_logs enable row level security;
+alter table public.contact_messages enable row level security;
 
 drop policy if exists "Public read portfolio" on public.portfolio_content;
 create policy "Public read portfolio"

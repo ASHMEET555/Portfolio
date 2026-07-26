@@ -40,7 +40,9 @@ Restart `npm run dev` after saving. On production, set these in the host’s env
 ## C. Create tables (SQL)
 
 1. **SQL Editor** → paste `supabase/schema.sql` → **Run**.
-2. Table Editor should show: `portfolio_content`, `live_stats`, `chat_logs`.
+2. Table Editor should show: `portfolio_content`, `live_stats`, `chat_logs`, `contact_messages`.
+
+Contact form submissions land in **`contact_messages`** (name, email, message, created_at). View them in Supabase → **Table Editor** → `contact_messages`. They do **not** go to your Gmail unless you also set EmailJS env vars.
 
 ---
 

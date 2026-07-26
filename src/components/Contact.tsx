@@ -41,27 +41,32 @@ export function Contact() {
     e.preventDefault();
     setStatus("sending");
     try {
-      await fetch("/api/contact", {
+      const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
       });
+      if (!res.ok) throw new Error("contact api failed");
 
+      // Optional: also email your inbox if EmailJS env vars are set on Vercel
       const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
       const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
       const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
-
       if (serviceId && templateId && publicKey) {
-        await emailjs.send(
-          serviceId,
-          templateId,
-          {
-            from_name: form.name,
-            from_email: form.email,
-            message: form.message,
-          },
-          publicKey,
-        );
+        try {
+          await emailjs.send(
+            serviceId,
+            templateId,
+            {
+              from_name: form.name,
+              from_email: form.email,
+              message: form.message,
+            },
+            publicKey,
+          );
+        } catch {
+          // Supabase already saved — don't fail the form for email-only issues
+        }
       }
 
       setStatus("ok");

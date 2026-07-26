@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { mkdir, appendFile } from "fs/promises";
-import path from "path";
+import { getSupabase } from "@/lib/supabase";
 
 export async function POST(req: NextRequest) {
   try {
@@ -13,20 +12,27 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Missing fields" }, { status: 400 });
     }
 
-    const entry = {
+    const supabase = getSupabase();
+    if (!supabase) {
+      return NextResponse.json(
+        { error: "Supabase is not configured" },
+        { status: 503 },
+      );
+    }
+
+    const { error } = await supabase.from("contact_messages").insert({
       name,
       email,
       message,
-      at: new Date().toISOString(),
-    };
+    });
 
-    const dir = path.join(process.cwd(), "data");
-    await mkdir(dir, { recursive: true });
-    await appendFile(
-      path.join(dir, "contacts.jsonl"),
-      `${JSON.stringify(entry)}\n`,
-      "utf8",
-    );
+    if (error) {
+      console.error("contact_messages insert failed:", error.message);
+      return NextResponse.json(
+        { error: "Failed to save message" },
+        { status: 500 },
+      );
+    }
 
     return NextResponse.json({ ok: true });
   } catch {
