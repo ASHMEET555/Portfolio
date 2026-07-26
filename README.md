@@ -1,36 +1,33 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Ashmeet Portfolio v2
 
-## Getting Started
+Visual clone of the reference Manikanta portfolio UI, rebuilt for **Ashmeet Singh Sandhu** with Next.js + Tailwind.
 
-First, run the development server:
+## Run
 
 ```bash
+cd portfolio-v2
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Features
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Floating glass navbar, light/dark theme, resume download
+- Hero, About (+ GitHub chart), Skills, Projects, Credentials, Experience, Contact, Footer
+- **Ash** AI chatbot (`/api/chat`) — local knowledge fallback; optional OpenAI/Gemini keys
+- Contact form — saves to `data/contacts.jsonl` + optional EmailJS
+- Like button, page loader, maps card
 
-## Learn More
+## Env (optional)
 
-To learn more about Next.js, take a look at the following resources:
+Copy `.env.example` → `.env.local`:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `OPENAI_API_KEY` or `GEMINI_API_KEY` for live Ash replies
+- `NEXT_PUBLIC_EMAILJS_*` for EmailJS delivery
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Content
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Edit `src/data/site.ts` for profile, projects, skills, experience.
+Replace `public/me.jpg` and `public/Ashmeet_Singh_Sandhu_Resume.pdf` anytime.

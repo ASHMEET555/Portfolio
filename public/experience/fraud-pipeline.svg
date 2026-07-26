@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" fill="none">
+  <rect width="1600" height="900" fill="#0B1220"/>
+
+  <text x="64" y="64" fill="#F8FAFC" font-family="ui-sans-serif,system-ui,sans-serif" font-size="22" font-weight="800">Fraud track - end-to-end flow</text>
+  <text x="64" y="98" fill="#FFFFFF" font-family="ui-sans-serif,system-ui,sans-serif" font-size="20" font-weight="700">From commerce data to investigation and share decisions</text>
+
+  <!-- Step 1 full width -->
+  <rect x="64" y="140" width="1472" height="110" rx="18" fill="#111827" stroke="#38BDF8" stroke-width="2.5"/>
+  <text x="100" y="190" fill="#FFFFFF" font-family="ui-sans-serif,system-ui,sans-serif" font-size="24" font-weight="800">1 - Commerce data</text>
+  <text x="100" y="225" fill="#F8FAFC" font-family="ui-sans-serif,system-ui,sans-serif" font-size="20" font-weight="700">Live PoS, payment, and settlement traffic across merchants</text>
+
+  <!-- down arrow -->
+  <path d="M800 250 V290" stroke="#64748B" stroke-width="3"/>
+  <path d="M787 275 L800 295 L813 275" fill="none" stroke="#64748B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Step 2 + 3 side by side -->
+  <rect x="64" y="310" width="700" height="160" rx="18" fill="#111827" stroke="#34D399" stroke-width="2.5"/>
+  <text x="100" y="370" fill="#FFFFFF" font-family="ui-sans-serif,system-ui,sans-serif" font-size="24" font-weight="800">2 - Rule-based signals</text>
+  <text x="100" y="410" fill="#F8FAFC" font-family="ui-sans-serif,system-ui,sans-serif" font-size="20" font-weight="700">Explainable checks on velocity, structuring,</text>
+  <text x="100" y="438" fill="#F8FAFC" font-family="ui-sans-serif,system-ui,sans-serif" font-size="20" font-weight="700">collusion, and burst patterns</text>
+
+  <path d="M780 390 H820" stroke="#64748B" stroke-width="3"/>
+  <path d="M805 377 L825 390 L805 403" fill="none" stroke="#64748B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <rect x="836" y="310" width="700" height="160" rx="18" fill="#111827" stroke="#A78BFA" stroke-width="2.5"/>
+  <text x="872" y="370" fill="#FFFFFF" font-family="ui-sans-serif,system-ui,sans-serif" font-size="24" font-weight="800">3 - Ranking layer</text>
+  <text x="872" y="410" fill="#F8FAFC" font-family="ui-sans-serif,system-ui,sans-serif" font-size="20" font-weight="700">Shadow scores to prioritize what</text>
+  <text x="872" y="438" fill="#F8FAFC" font-family="ui-sans-serif,system-ui,sans-serif" font-size="20" font-weight="700">analysts should look at first</text>
+
+  <!-- down from both -->
+  <path d="M414 470 V510" stroke="#64748B" stroke-width="3"/>
+  <path d="M1186 470 V510" stroke="#64748B" stroke-width="3"/>
+  <path d="M414 510 H1186" stroke="#64748B" stroke-width="3"/>
+  <path d="M800 510 V550" stroke="#64748B" stroke-width="3"/>
+  <path d="M787 535 L800 555 L813 535" fill="none" stroke="#64748B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Step 4 + 5 -->
+  <rect x="64" y="570" width="700" height="160" rx="18" fill="#111827" stroke="#FBBF24" stroke-width="2.5"/>
+  <text x="100" y="630" fill="#FFFFFF" font-family="ui-sans-serif,system-ui,sans-serif" font-size="24" font-weight="800">4 - Investigation loop</text>
+  <text x="100" y="670" fill="#F8FAFC" font-family="ui-sans-serif,system-ui,sans-serif" font-size="20" font-weight="700">Critical signals become cases with</text>
+  <text x="100" y="698" fill="#F8FAFC" font-family="ui-sans-serif,system-ui,sans-serif" font-size="20" font-weight="700">steps, notes, and durable audit history</text>
+
+  <path d="M780 650 H820" stroke="#64748B" stroke-width="3"/>
+  <path d="M805 637 L825 650 L805 663" fill="none" stroke="#64748B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <rect x="836" y="570" width="700" height="160" rx="18" fill="#111827" stroke="#FB7185" stroke-width="2.5"/>
+  <text x="872" y="630" fill="#FFFFFF" font-family="ui-sans-serif,system-ui,sans-serif" font-size="24" font-weight="800">5 - Share gate</text>
+  <text x="872" y="670" fill="#F8FAFC" font-family="ui-sans-serif,system-ui,sans-serif" font-size="20" font-weight="700">Block partner share while a subject</text>
+  <text x="872" y="698" fill="#F8FAFC" font-family="ui-sans-serif,system-ui,sans-serif" font-size="20" font-weight="700">is under investigation or confirmed risky</text>
+
+  <text x="64" y="820" fill="#FFFFFF" font-family="ui-sans-serif,system-ui,sans-serif" font-size="17" font-weight="700">Realtime path: invoice-driven score ? cached features ? fraud score UI for analysts</text>
+</svg>

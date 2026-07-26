@@ -1,0 +1,16 @@
+{
+  "codolioHandle": "ashmeet555",
+  "submissions": 1462,
+  "questions": 1393,
+  "maxStreak": 176,
+  "currentStreak": 10,
+  "easy": 186,
+  "medium": 379,
+  "hard": 127,
+  "platforms": {
+    "leetcode": 692,
+    "codeforces": 406,
+    "codechef": 295
+  },
+  "notes": "Update these numbers anytime from Supabase Table Editor → live_stats → key=dsa"
+}

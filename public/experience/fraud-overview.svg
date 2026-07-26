@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" fill="none">
+  <rect width="1600" height="900" fill="#0B1A33"/>
+
+  <!-- decorative dots -->
+  <g fill="#FFFFFF" opacity="0.85">
+    <circle cx="1480" cy="56" r="3.5"/><circle cx="1506" cy="56" r="3.5"/><circle cx="1532" cy="56" r="3.5"/><circle cx="1558" cy="56" r="3.5"/>
+    <circle cx="1480" cy="82" r="3.5"/><circle cx="1506" cy="82" r="3.5"/><circle cx="1532" cy="82" r="3.5"/><circle cx="1558" cy="82" r="3.5"/>
+    <circle cx="1480" cy="108" r="3.5"/><circle cx="1506" cy="108" r="3.5"/><circle cx="1532" cy="108" r="3.5"/><circle cx="1558" cy="108" r="3.5"/>
+    <circle cx="1480" cy="134" r="3.5"/><circle cx="1506" cy="134" r="3.5"/><circle cx="1532" cy="134" r="3.5"/><circle cx="1558" cy="134" r="3.5"/>
+    <circle cx="1480" cy="160" r="3.5"/><circle cx="1506" cy="160" r="3.5"/><circle cx="1532" cy="160" r="3.5"/><circle cx="1558" cy="160" r="3.5"/>
+  </g>
+
+  <text x="72" y="88" fill="#C9A227" font-family="ui-sans-serif,system-ui,sans-serif" font-size="22" font-weight="800" letter-spacing="4">FRAUD &amp; ANOMALY DETECTION</text>
+  <text x="72" y="170" fill="#FFFFFF" font-family="Georgia, 'Times New Roman', serif" font-size="56" font-weight="800">Fraud &amp; Anomaly Detection on Helix</text>
+  <text x="72" y="230" fill="#FFFFFF" font-family="ui-sans-serif,system-ui,sans-serif" font-size="24" font-style="italic" font-weight="700">Rules-first fraud layer for merchant PoS, payments &amp; settlements</text>
+  <text x="72" y="272" fill="#FFFFFF" font-family="ui-sans-serif,system-ui,sans-serif" font-size="24" font-style="italic" font-weight="700">The missing layer between raw transactions and credit / lender share</text>
+
+  <!-- flow boxes -->
+  <rect x="120" y="520" width="380" height="140" rx="10" fill="#0F2744" stroke="#E8EEF7" stroke-width="2.5"/>
+  <text x="310" y="580" fill="#FFFFFF" font-family="ui-sans-serif,system-ui,sans-serif" font-size="28" font-weight="800" text-anchor="middle">Helix Data</text>
+  <text x="310" y="620" fill="#FFFFFF" font-family="ui-sans-serif,system-ui,sans-serif" font-size="20" text-anchor="middle" font-weight="700">Commerce traffic in</text>
+
+  <!-- arrow 1 -->
+  <path d="M520 590 H620" stroke="#5B9BD5" stroke-width="4" stroke-linecap="round"/>
+  <path d="M600 575 L625 590 L600 605" fill="none" stroke="#5B9BD5" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <rect x="640" y="500" width="320" height="180" rx="12" fill="#C0392B"/>
+  <text x="800" y="575" fill="#FFFFFF" font-family="ui-sans-serif,system-ui,sans-serif" font-size="28" font-weight="800" text-anchor="middle">Fraud Track</text>
+  <text x="800" y="620" fill="#FFFFFF" font-family="ui-sans-serif,system-ui,sans-serif" font-size="20" text-anchor="middle" font-weight="700">Detect - Rank - Investigate</text>
+
+  <!-- arrow 2 -->
+  <path d="M980 590 H1080" stroke="#5B9BD5" stroke-width="4" stroke-linecap="round"/>
+  <path d="M1060 575 L1085 590 L1060 605" fill="none" stroke="#5B9BD5" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <rect x="1100" y="520" width="380" height="140" rx="10" fill="#0F2744" stroke="#E8EEF7" stroke-width="2.5"/>
+  <text x="1290" y="580" fill="#FFFFFF" font-family="ui-sans-serif,system-ui,sans-serif" font-size="28" font-weight="800" text-anchor="middle">Lender-Share Gate</text>
+  <text x="1290" y="620" fill="#FFFFFF" font-family="ui-sans-serif,system-ui,sans-serif" font-size="20" text-anchor="middle" font-weight="700">Block risky subjects</text>
+</svg>
