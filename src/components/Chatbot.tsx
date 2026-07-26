@@ -284,7 +284,9 @@ export function Chatbot() {
       abortRef.current = null;
       const reply =
         String(data.reply || "").trim() ||
-        "I couldn't answer that just now.";
+        (res.status === 429
+          ? "Too many messages — try again later."
+          : "I couldn't answer that just now.");
       revealReply(reply);
     } catch (err) {
       abortRef.current = null;

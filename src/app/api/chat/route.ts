@@ -5,6 +5,10 @@ import {
 } from "@/lib/portfolio-content";
 import { getSupabase } from "@/lib/supabase";
 import type { PortfolioData } from "@/lib/portfolio-local";
+import {
+  enforceChatRateLimit,
+  rateLimitReply,
+} from "@/lib/chat-rate-limit";
 
 function hasWord(q: string, ...words: string[]) {
   return words.some((w) => new RegExp(`\\b${w}\\b`, "i").test(q));
@@ -412,9 +416,37 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Message required" }, { status: 400 });
     }
 
+    const limit = await enforceChatRateLimit(req);
+    if (message.length > limit.maxChars) {
+      return NextResponse.json(
+        {
+          reply: `Please keep messages under ${limit.maxChars} characters.`,
+          mode: "rate_limit",
+          source: "local",
+        },
+        { status: 413 },
+      );
+    }
+    if (!limit.ok) {
+      return NextResponse.json(
+        {
+          reply: rateLimitReply(limit.reason || "hourly"),
+          mode: "rate_limit",
+          source: "local",
+          retryAfterSec: limit.retryAfterSec,
+        },
+        {
+          status: 429,
+          headers: {
+            "Retry-After": String(limit.retryAfterSec || 3600),
+          },
+        },
+      );
+    }
+
     const { data: content, source } = await getPortfolioContent();
     const system = buildSystemPrompt(content);
-    const history = Array.isArray(body.history) ? body.history : [];
+    const history = Array.isArray(body.history) ? body.history.slice(-8) : [];
     const messages = chatMessages(system, history, message);
 
     const provider = (process.env.CHAT_PROVIDER || "auto").toLowerCase();

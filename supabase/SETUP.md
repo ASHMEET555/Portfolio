@@ -81,9 +81,28 @@ The browser calls `GET /api/content` with `cache: "no-store"`, so it always pull
 
 ## F. Chatbot
 
-Priority: **Groq → Gemini → OpenAI → local**. Chat answers use the same Supabase JSON as the UI.
+Priority: **Gemini → Groq → OpenAI → local** (controlled by `CHAT_PROVIDER`). Chat answers use the same Supabase JSON as the UI.
 
-Use a normal chat model (e.g. `llama-3.3-70b-versatile`), not Compound.
+Abuse protection (defaults):
+- **10 messages / IP / hour**
+- **30 messages / IP / day**
+- **800 character** max message length
+
+After rate limit, the bot replies: “Too many messages — try again later.”  
+Tune with `CHAT_RATE_LIMIT_HOUR`, `CHAT_RATE_LIMIT_DAY`, `CHAT_MAX_MESSAGE_CHARS`.
+
+Also create the rate-limit table (SQL Editor):
+
+```sql
+create table if not exists public.chat_rate_limits (
+  key text primary key,
+  count int not null default 0,
+  updated_at timestamptz not null default now()
+);
+alter table public.chat_rate_limits enable row level security;
+```
+
+Use a normal chat model (e.g. `gemini-flash-latest` / `llama-3.3-70b-versatile`), not Compound.
 
 ---
 

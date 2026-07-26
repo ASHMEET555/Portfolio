@@ -32,6 +32,13 @@ create table if not exists public.contact_messages (
   created_at timestamptz not null default now()
 );
 
+-- 5) Chat rate limits (per IP hour/day buckets)
+create table if not exists public.chat_rate_limits (
+  key text primary key,
+  count int not null default 0,
+  updated_at timestamptz not null default now()
+);
+
 -- Auto-update timestamps
 create or replace function public.set_updated_at()
 returns trigger
@@ -58,6 +65,7 @@ alter table public.portfolio_content enable row level security;
 alter table public.live_stats enable row level security;
 alter table public.chat_logs enable row level security;
 alter table public.contact_messages enable row level security;
+alter table public.chat_rate_limits enable row level security;
 
 drop policy if exists "Public read portfolio" on public.portfolio_content;
 create policy "Public read portfolio"
