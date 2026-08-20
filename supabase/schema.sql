@@ -39,6 +39,39 @@ create table if not exists public.chat_rate_limits (
   updated_at timestamptz not null default now()
 );
 
+-- 6) Global portfolio like counter (bottom-left heart)
+create table if not exists public.site_likes (
+  id text primary key default 'main',
+  count bigint not null default 0,
+  updated_at timestamptz not null default now()
+);
+
+insert into public.site_likes (id, count)
+values ('main', 0)
+on conflict (id) do nothing;
+
+create or replace function public.bump_site_likes(delta integer)
+returns bigint
+language plpgsql
+security definer
+as $$
+declare
+  new_count bigint;
+begin
+  insert into public.site_likes (id, count)
+  values ('main', 0)
+  on conflict (id) do nothing;
+
+  update public.site_likes
+  set count = greatest(0, count + delta),
+      updated_at = now()
+  where id = 'main'
+  returning count into new_count;
+
+  return coalesce(new_count, 0);
+end;
+$$;
+
 -- Auto-update timestamps
 create or replace function public.set_updated_at()
 returns trigger
@@ -66,6 +99,7 @@ alter table public.live_stats enable row level security;
 alter table public.chat_logs enable row level security;
 alter table public.contact_messages enable row level security;
 alter table public.chat_rate_limits enable row level security;
+alter table public.site_likes enable row level security;
 
 drop policy if exists "Public read portfolio" on public.portfolio_content;
 create policy "Public read portfolio"
@@ -76,6 +110,12 @@ using (true);
 drop policy if exists "Public read live stats" on public.live_stats;
 create policy "Public read live stats"
 on public.live_stats for select
+to anon, authenticated
+using (true);
+
+drop policy if exists "Public read site likes" on public.site_likes;
+create policy "Public read site likes"
+on public.site_likes for select
 to anon, authenticated
 using (true);
 
